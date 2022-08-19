@@ -15,7 +15,6 @@ import p2p.peerhub.repositories.UserRepository;
 @Controller
 public class WebController {
 
-    @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/user/registration")

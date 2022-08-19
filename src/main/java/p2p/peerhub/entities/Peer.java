@@ -1,9 +1,12 @@
 package p2p.peerhub.entities;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "peers")
+@Data
 public class Peer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,24 +18,4 @@ public class Peer {
 
     @Column(nullable = false, length = 20)
     private String port;
-
-    public long getUser() {
-        return user;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
-    }
 }
