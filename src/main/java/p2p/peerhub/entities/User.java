@@ -10,13 +10,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true, length = 50)
-    private String name;
-    @Column(nullable = false, unique = true, length = 50)
     private String email;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 60)
     private String password;
-    @Column(nullable = false, length = 50)
-    private String matching_password;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Peer.class)
     @JoinColumn(name = "user_id")
