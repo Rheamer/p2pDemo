@@ -37,8 +37,6 @@ public class WebSecurityConfig{
                 .loginPage("/login")
                 .defaultSuccessUrl("/users")
                 .and()
-                .rememberMe().key("AbcdEfghIjklmNopQrsTuvXyz_0123456789")
-                .and()
                 .logout().logoutSuccessUrl("/")
                 .and()
                 .build();
