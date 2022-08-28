@@ -27,22 +27,21 @@ public class WebSecurityConfig{
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        http.authorizeRequests()
+        return http.authorizeRequests()
                 .antMatchers("/users").authenticated()
                 .anyRequest().permitAll()
-                .and().formLogin()
+                .and()
+                .rememberMe()
+                .and()
+                .formLogin()
                 .loginPage("/login")
-                .usernameParameter("email")
-                .permitAll()
+                .defaultSuccessUrl("/users")
                 .and()
                 .rememberMe().key("AbcdEfghIjklmNopQrsTuvXyz_0123456789")
                 .and()
-                .logout().permitAll();
-
-        http.headers().frameOptions().sameOrigin();
-
-        return http.build();
+                .logout().logoutSuccessUrl("/")
+                .and()
+                .build();
     }
 
     @Bean
