@@ -1,11 +1,16 @@
 package p2p.peerhub.entities;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+
 import javax.persistence.*;
-import lombok.Data;
 
 @Entity
 @Table(name = "users")
 @Data
 public class User {
+    @JsonAnyGetter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,7 +19,12 @@ public class User {
     @Column(nullable = false, length = 60)
     private String password;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Peer.class)
     @JoinColumn(name = "user_id")
     private Peer peer_data;
+
+    public User() {
+    }
+
 }

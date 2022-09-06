@@ -1,5 +1,9 @@
 package p2p.peerhub.entities;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,6 +12,7 @@ import java.util.List;
 @Table(name = "peers")
 @Data
 public class Peer {
+    @JsonAnyGetter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -17,5 +22,10 @@ public class Peer {
     private String ip;
 
     @Column(nullable = false, length = 20)
+    @Getter
     private String port;
+
+    public Peer(User user){
+        this.user = user.getId();
+    }
 }
