@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "peers")
+@NoArgsConstructor
 @Data
 public class Peer {
     @JsonAnyGetter
@@ -28,4 +30,5 @@ public class Peer {
     public Peer(User user){
         this.user = user.getId();
     }
+
 }

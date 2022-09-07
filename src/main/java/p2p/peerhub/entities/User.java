@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "users")
 @Data
 public class User {
-    @JsonAnyGetter
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

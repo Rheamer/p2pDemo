@@ -28,14 +28,11 @@ public class WebSecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/users").authenticated()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/", "/**").permitAll()
                 .and()
                 .build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/images/**", "/js/**", "/webjars/**");
     }
 
     @Bean
