@@ -1,10 +1,10 @@
-package p2p.peerhub.details;
+package p2p.hub.details;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import p2p.peerhub.entities.User;
-import p2p.peerhub.repositories.UserRepository;
+import p2p.hub.entities.User;
+import p2p.hub.repositories.UserRepository;
 
 public class CustomUserDetailsService implements UserDetailsService {
 

@@ -1,6 +1,5 @@
-package p2p.peerhub.entities;
+package p2p.hub.entities;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 

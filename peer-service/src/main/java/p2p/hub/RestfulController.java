@@ -1,17 +1,16 @@
-package p2p.peerhub;
+package p2p.hub;
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import p2p.peerhub.configs.WebSecurityConfig;
-import p2p.peerhub.entities.Peer;
-import p2p.peerhub.entities.User;
-import p2p.peerhub.repositories.PeerRepository;
-import p2p.peerhub.repositories.UserRepository;
+import p2p.hub.configs.WebSecurityConfig;
+import p2p.hub.entities.Peer;
+import p2p.hub.entities.User;
+import p2p.hub.repositories.PeerRepository;
+import p2p.hub.repositories.UserRepository;
 import java.util.Optional;
 
 @RestController

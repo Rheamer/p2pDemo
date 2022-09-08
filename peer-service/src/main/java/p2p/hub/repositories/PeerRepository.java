@@ -1,8 +1,7 @@
-package p2p.peerhub.repositories;
+package p2p.hub.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import p2p.peerhub.entities.Peer;
+import p2p.hub.entities.Peer;
 
 public interface PeerRepository extends JpaRepository<Peer, Long> {
 }

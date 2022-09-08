@@ -1,8 +1,8 @@
-package p2p.peerhub.repositories;
+package p2p.hub.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import p2p.peerhub.entities.User;
+import p2p.hub.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.email = ?1")

@@ -1,4 +1,4 @@
-package p2p.peerhub;
+package p2p.hub;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
