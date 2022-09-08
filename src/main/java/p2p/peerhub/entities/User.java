@@ -6,9 +6,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "users")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor(access=AccessLevel.PROTECTED, force=true)
 public class User {
     @JsonIgnore
     @Id
@@ -24,7 +26,5 @@ public class User {
     @JoinColumn(name = "user_id")
     private Peer peer_data;
 
-    public User() {
-    }
 
 }

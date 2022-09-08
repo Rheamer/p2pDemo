@@ -1,6 +1,7 @@
 package p2p.peerhub;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,20 @@ import java.util.Optional;
 @RestController
 @RequestMapping(produces = "application/json")
 @CrossOrigin(origins="http://p2pdemo:8080")
-@AllArgsConstructor
 public class RestfulController {
     private UserRepository userRepo;
     private PeerRepository peerRepo;
     private WebSecurityConfig webSecConfig;
+
+    @Autowired
+    public RestfulController(
+            UserRepository urep,
+            PeerRepository prep,
+            WebSecurityConfig wsc){
+        this.userRepo = urep;
+        this.peerRepo = prep;
+        this.webSecConfig = wsc;
+    }
 
     @PostMapping(value = "/register", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
