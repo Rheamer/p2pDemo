@@ -17,6 +17,7 @@
 	</properties>
 	<modules>
 		<module>peer-service</module>
+		<module>peer-authentication</module>
 	</modules>
 
 </project>

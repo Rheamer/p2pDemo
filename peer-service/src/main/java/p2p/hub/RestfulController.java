@@ -17,56 +17,25 @@ import java.util.Optional;
 @RequestMapping(produces = "application/json")
 @CrossOrigin(origins="http://p2pdemo:8080")
 public class RestfulController {
-    private UserRepository userRepo;
     private PeerRepository peerRepo;
     private WebSecurityConfig webSecConfig;
 
     @Autowired
     public RestfulController(
-            UserRepository urep,
             PeerRepository prep,
             WebSecurityConfig wsc){
-        this.userRepo = urep;
         this.peerRepo = prep;
         this.webSecConfig = wsc;
     }
 
-    @PostMapping(value = "/register", consumes = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
-    public User processRegister(User user) {
-        var passwordEncoder = webSecConfig.passwordEncoder();
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        User savedUser = userRepo.save(user);
-        var peer = new Peer(user);
-        peerRepo.save(peer);
-        return savedUser;
-    }
-
-    @GetMapping("/users/{id}")
-    public ResponseEntity getUser(@PathVariable("id") Long id) {
-        Optional<User> optUser = userRepo.findById(id);
-        if (optUser.isPresent()){
-            return new ResponseEntity<>(optUser.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-    }
-
-    @GetMapping("/users")
-    @ResponseStatus(HttpStatus.OK)
-    public Iterable<User> listUsers(Model model) {
-        var page = PageRequest.of(0, 12);
-        return userRepo.findAll(page).getContent();
-    }
-
     @ResponseBody()
     @PostMapping("/configPeer/{userId}")
-    public HttpStatus setPeerFields(@PathVariable("userId") Long userId, String ip, String port){
-        var user = userRepo.findById(userId);
-        if (user.isPresent()){
-            Peer peer = user.get().getPeer_data();
-            peer.setIp(ip);
-            peer.setPort(port);
+    public HttpStatus setPeerFields(@PathVariable("peerId") Long peerId, String ip, String port){
+        var peer = peerRepo.findById(peerId);
+        if (peer.isPresent()){
+            peer.get().setIp(ip);
+            peer.get().setPort(port);
+            peerRepo.save(peer.get());
             return HttpStatus.OK;
         }
         return HttpStatus.BAD_REQUEST;
